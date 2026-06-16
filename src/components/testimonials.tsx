@@ -56,7 +56,7 @@ const item = {
 
 export function Testimonials() {
   return (
-    <section className="bg-[#0b1323]">
+    <section className="bg-section-alt">
       <div className="section-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -65,7 +65,7 @@ export function Testimonials() {
           transition={{ duration: 0.5, ease }}
           className="mb-4 text-center"
         >
-          <span className="text-[12px] font-medium tracking-[0.1em] uppercase text-blue-400">
+          <span className="text-[12px] font-medium tracking-[0.1em] uppercase" style={{ color: "var(--accent-text)" }}>
             Testimonials
           </span>
         </motion.div>

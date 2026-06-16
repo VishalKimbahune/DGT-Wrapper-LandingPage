@@ -73,7 +73,7 @@ export function Features() {
           transition={{ duration: 0.5, ease }}
           className="mb-4 text-center"
         >
-          <span className="text-[12px] font-medium tracking-[0.1em] uppercase text-blue-400">
+          <span className="text-[12px] font-medium tracking-[0.1em] uppercase" style={{ color: "var(--accent-text)" }}>
             Platform Capabilities
           </span>
         </motion.div>

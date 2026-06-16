@@ -1,47 +1,49 @@
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
 
-const sections = [
+interface FooterLink { label: string; href: string; }
+
+const sections: { title: string; links: FooterLink[] }[] = [
   {
     title: "Product",
     links: [
-      "Features",
-      "Pricing",
-      "Integrations",
-      "Lead Marketplace",
-      "API Docs",
-      "Changelog",
+      { label: "Features", href: "/#features" },
+      { label: "Pricing", href: "/#pricing" },
+      { label: "Integrations", href: "#" },
+      { label: "Lead Marketplace", href: "#" },
+      { label: "API Docs", href: "#" },
+      { label: "Changelog", href: "#" },
     ],
   },
   {
     title: "Company",
     links: [
-      "About Us",
-      "Blog",
-      "Careers",
-      "Press Kit",
-      "Contact Us",
-      "Partners",
+      { label: "About Us", href: "/about" },
+      { label: "Blog", href: "#" },
+      { label: "Careers", href: "#" },
+      { label: "Press Kit", href: "#" },
+      { label: "Contact Us", href: "#" },
+      { label: "Partners", href: "#" },
     ],
   },
   {
     title: "Support",
     links: [
-      "Documentation",
-      "Help Center",
-      "Contact Support",
-      "Status Page",
-      "Community Forum",
+      { label: "Documentation", href: "#" },
+      { label: "Help Center", href: "#" },
+      { label: "Contact Support", href: "#" },
+      { label: "Status Page", href: "#" },
+      { label: "Community Forum", href: "#" },
     ],
   },
   {
     title: "Legal",
     links: [
-      "Privacy Policy",
-      "Terms of Service",
-      "Cookie Policy",
-      "Security",
-      "GDPR Compliance",
+      { label: "Privacy Policy", href: "#" },
+      { label: "Terms of Service", href: "#" },
+      { label: "Cookie Policy", href: "#" },
+      { label: "Security", href: "#" },
+      { label: "GDPR Compliance", href: "#" },
     ],
   },
 ];
@@ -55,7 +57,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-background">
+    <footer className="border-t bg-background" style={{ borderColor: "var(--border-color)" }}>
       <div className="mx-auto max-w-[1200px] px-6 pt-16 pb-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
@@ -64,7 +66,7 @@ export function Footer() {
                 <BarChart3 className="h-4 w-4 text-white" />
               </div>
               <span className="text-lg font-bold text-foreground">
-                DGT<span className="text-blue-400">Wrapper</span>
+                DGT<span style={{ color: "var(--accent-text)" }}>Wrapper</span>
               </span>
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-text-muted max-w-[260px]">
@@ -75,7 +77,11 @@ export function Footer() {
                 <a
                   key={s.label}
                   href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-text-muted text-[11px] font-bold transition-all duration-150 hover:border-blue-500/30 hover:text-blue-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border text-text-muted text-[11px] font-bold transition-all duration-150"
+                  style={{
+                    borderColor: "var(--border-light)",
+                    backgroundColor: "var(--surface-muted)",
+                  }}
                   aria-label={s.label}
                 >
                   {s.label[0]}
@@ -91,13 +97,13 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {section.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
                       className="cursor-pointer text-sm text-text-muted transition-colors duration-150 hover:text-text-secondary"
                     >
-                      {link}
-                    </a>
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -105,7 +111,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-2 border-t border-white/[0.04] pt-6 text-[13px] text-text-muted md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-2 border-t pt-6 text-[13px] text-text-muted md:flex-row" style={{ borderColor: "var(--divider)" }}>
           <span>
             &copy; {new Date().getFullYear()} Pixaflip Technologies. All rights reserved.
           </span>

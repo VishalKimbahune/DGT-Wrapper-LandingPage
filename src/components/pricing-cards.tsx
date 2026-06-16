@@ -93,7 +93,7 @@ export function PricingCards() {
           transition={{ duration: 0.5, ease }}
           className="mb-4 text-center"
         >
-          <span className="text-[12px] font-medium tracking-[0.1em] uppercase text-blue-400">
+          <span className="text-[12px] font-medium tracking-[0.1em] uppercase" style={{ color: "var(--accent-text)" }}>
             Pricing
           </span>
         </motion.div>
@@ -126,9 +126,8 @@ export function PricingCards() {
           </span>
           <button
             onClick={() => setAnnual(!annual)}
-            className={`relative h-6 w-11 cursor-pointer rounded-full transition-colors ${
-              annual ? "bg-blue-600" : "bg-white/10"
-            }`}
+            className="relative h-6 w-11 cursor-pointer rounded-full transition-colors"
+            style={{ backgroundColor: annual ? "#2563eb" : "var(--toggle-off-bg)" }}
           >
             <span
               className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
@@ -138,7 +137,7 @@ export function PricingCards() {
           </button>
           <span className={`flex items-center gap-1.5 text-sm ${annual ? "text-foreground" : "text-text-muted"}`}>
             Annual
-            <span className="rounded bg-green-500/15 px-1.5 py-0.5 text-xs font-medium text-green-400">
+            <span className="rounded px-1.5 py-0.5 text-xs font-medium" style={{ backgroundColor: "var(--badge-green-bg)", color: "var(--badge-green-text)" }}>
               Save 20%
             </span>
           </span>
@@ -157,12 +156,16 @@ export function PricingCards() {
               variants={item}
               className={`relative flex flex-col rounded-[24px] p-8 ${
                 plan.featured
-                  ? "gradient-border bg-white/[0.04] backdrop-blur-xl shadow-[0_0_60px_rgba(37,99,235,0.12)]"
+                  ? "gradient-border backdrop-blur-xl"
                   : "glass"
               }`}
+              style={plan.featured ? {
+                background: "var(--pricing-featured-bg)",
+                boxShadow: "var(--pricing-featured-shadow)",
+              } : undefined}
             >
               {plan.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-1 text-xs font-semibold text-white">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-xs font-semibold text-white" style={{ background: "var(--most-popular-bg)" }}>
                   Most Popular
                 </div>
               )}
@@ -176,12 +179,12 @@ export function PricingCards() {
                 </span>
               </div>
               <div className="mb-6 text-sm text-text-muted">{plan.tagline}</div>
-              <div className="mb-6 h-px w-full bg-white/10" />
+              <div className="mb-6 h-px w-full" style={{ backgroundColor: "var(--divider)" }} />
 
               <ul className="mb-8 flex flex-1 flex-col gap-3">
                 {plan.features.map((f, j) => (
                   <li key={j} className="flex items-start gap-3">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-400" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--badge-green-text)" }} />
                     <span className="text-sm text-text-secondary">{f}</span>
                   </li>
                 ))}
@@ -191,8 +194,11 @@ export function PricingCards() {
                 className={`w-full rounded-xl py-3 text-sm font-semibold transition-all duration-200 ${
                   plan.featured
                     ? "btn-primary"
-                    : "border border-white/15 bg-transparent text-foreground hover:bg-white/5"
+                    : "bg-transparent text-foreground"
                 }`}
+                style={!plan.featured ? {
+                  border: "1px solid var(--card-btn-border)",
+                } : undefined}
               >
                 {plan.cta}
               </button>

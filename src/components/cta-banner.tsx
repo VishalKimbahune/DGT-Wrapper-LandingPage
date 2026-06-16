@@ -15,26 +15,28 @@ export function CTABanner() {
         transition={{ duration: 0.5, ease }}
         className="mx-auto max-w-[900px] overflow-hidden rounded-[28px] p-8 text-center md:p-16 relative"
         style={{
-          background: "linear-gradient(135deg, rgba(37,99,235,0.2), rgba(79,70,229,0.12), rgba(15,23,42,0.8))",
-          border: "1px solid rgba(37,99,235,0.25)",
-          boxShadow: "0 0 80px rgba(37,99,235,0.1)",
+          background: "var(--cta-bg)",
+          border: "1px solid var(--cta-border)",
+          boxShadow: "var(--cta-shadow)",
         }}
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
-            className="absolute h-[300px] w-[300px] rounded-full opacity-20"
+            className="absolute h-[300px] w-[300px] rounded-full"
             style={{
               background: "radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%)",
               top: "-100px",
               right: "-50px",
+              opacity: 0.2,
             }}
           />
           <div
-            className="absolute h-[250px] w-[250px] rounded-full opacity-15"
+            className="absolute h-[250px] w-[250px] rounded-full"
             style={{
               background: "radial-gradient(circle, rgba(79,70,229,0.25), transparent 70%)",
               bottom: "-80px",
               left: "-50px",
+              opacity: 0.15,
             }}
           />
         </div>
@@ -57,7 +59,11 @@ export function CTABanner() {
               <input
                 type="email"
                 placeholder="Enter your work email"
-                className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-5 py-3.5 text-sm text-foreground placeholder:text-text-muted outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all"
+                className="w-full rounded-xl px-5 py-3.5 text-sm text-foreground placeholder:text-text-muted outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 transition-all"
+                style={{
+                  border: "1px solid var(--border-muted)",
+                  backgroundColor: "var(--input-bg)",
+                }}
               />
             </div>
             <button className="btn-primary w-full sm:w-auto whitespace-nowrap">

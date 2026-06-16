@@ -52,7 +52,7 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 export function StatsBar() {
   return (
-    <section className="border-y border-white/10 bg-[#0b1323]">
+    <section className="border-y bg-section-alt" style={{ borderColor: "var(--border-color)" }}>
       <div className="mx-auto max-w-[1200px] px-6 py-16">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

@@ -3,18 +3,20 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, BarChart3 } from "lucide-react";
+import { Menu, X, BarChart3, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 
 const navLinks = [
   { label: "Features", href: "#features" },
   { label: "Solutions", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
-  { label: "About", href: "#" },
+  { label: "About", href: "/about" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -37,13 +39,10 @@ export function Navbar() {
   return (
     <motion.header
       className="fixed top-0 left-0 right-0 z-50 h-16"
+      initial={{ backgroundColor: "transparent", borderBottom: "1px solid transparent", backdropFilter: "blur(0px)" }}
       animate={{
-        backgroundColor: scrolled
-          ? "rgba(15, 23, 42, 0.85)"
-          : "transparent",
-        borderBottom: scrolled
-          ? "1px solid rgba(255, 255, 255, 0.08)"
-          : "1px solid transparent",
+        backgroundColor: scrolled ? "var(--hero-bg-overlay)" : "transparent",
+        borderBottom: scrolled ? "1px solid var(--border-light)" : "1px solid transparent",
         backdropFilter: scrolled ? "blur(24px) saturate(180%)" : "blur(0px)",
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
@@ -54,9 +53,16 @@ export function Navbar() {
             <BarChart3 className="h-4 w-4 text-white" />
           </div>
           <span className="text-lg font-bold text-foreground">
-            DGT<span className="text-blue-400">Wrapper</span>
+            DGT<span className="text-[var(--accent-text)]">Wrapper</span>
           </span>
-          <span className="ml-1.5 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-text-muted">
+          <span
+            className="ml-1.5 rounded-full border px-2 py-0.5 text-[10px] font-medium"
+            style={{
+              borderColor: "var(--border-light)",
+              backgroundColor: "var(--glass-bg)",
+              color: "var(--text-muted)",
+            }}
+          >
             by Pixaflip
           </span>
         </Link>
@@ -87,6 +93,17 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
+          <button
+            onClick={toggleTheme}
+            className="cursor-pointer text-text-secondary transition-colors duration-200 hover:text-foreground"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+          </button>
           <button className="cursor-pointer text-sm font-medium text-text-secondary transition-colors duration-200 hover:text-foreground">
             Log in
           </button>
@@ -95,13 +112,26 @@ export function Navbar() {
           </button>
         </div>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex cursor-pointer text-foreground md:hidden"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className="cursor-pointer text-text-secondary transition-colors duration-200 hover:text-foreground"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex cursor-pointer text-foreground"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -110,7 +140,8 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-b border-white/10 bg-[#0f172a] md:hidden"
+            className="overflow-hidden border-b md:hidden"
+            style={{ borderColor: "var(--border-color)", backgroundColor: "var(--bg)" }}
           >
             <div className="flex flex-col px-6 py-4">
               {navLinks.map((link) =>
@@ -134,7 +165,7 @@ export function Navbar() {
                   </Link>
                 )
               )}
-              <div className="mt-2 flex flex-col gap-3 pt-4 border-t border-white/10">
+              <div className="mt-2 flex flex-col gap-3 pt-4 border-t" style={{ borderColor: "var(--border-light)" }}>
                 <button className="w-full cursor-pointer text-sm font-medium text-text-secondary transition-colors duration-200 hover:text-foreground">
                   Log in
                 </button>

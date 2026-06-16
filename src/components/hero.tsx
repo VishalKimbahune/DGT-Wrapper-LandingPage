@@ -17,7 +17,7 @@ const fadeUp = {
 
 const avatars = [
   { initials: "RA", color: "#2563eb" },
-  { initials: "PK", color: "#4f46e5" },
+  { initials: "VK", color: "#4f46e5" },
   { initials: "AN", color: "#22c55e" },
   { initials: "SR", color: "#f59e0b" },
   { initials: "MT", color: "#ec4899" },
@@ -35,27 +35,27 @@ export function Hero() {
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-6 pt-24">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div
-          className="absolute h-[500px] w-[500px] rounded-full opacity-20"
+          className="absolute h-[500px] w-[500px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(37,99,235,0.25), transparent 70%)",
+            background: `radial-gradient(circle, var(--hero-orb-1), transparent 70%)`,
             top: "-150px",
             left: "-100px",
             animation: "float 8s ease-in-out infinite",
           }}
         />
         <div
-          className="absolute h-[400px] w-[400px] rounded-full opacity-15"
+          className="absolute h-[400px] w-[400px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(79,70,229,0.2), transparent 70%)",
+            background: `radial-gradient(circle, var(--hero-orb-2), transparent 70%)`,
             top: "-80px",
             right: "-100px",
             animation: "float 10s ease-in-out infinite 2s",
           }}
         />
         <div
-          className="absolute h-[600px] w-[600px] rounded-full opacity-10"
+          className="absolute h-[600px] w-[600px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(37,99,235,0.12), transparent 70%)",
+            background: `radial-gradient(circle, var(--hero-orb-3), transparent 70%)`,
             bottom: "-250px",
             left: "20%",
             animation: "float 12s ease-in-out infinite 4s",
@@ -64,7 +64,7 @@ export function Hero() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)",
+            backgroundImage: `radial-gradient(var(--dot-color) 1px, transparent 1px)`,
             backgroundSize: "40px 40px",
           }}
         />
@@ -131,8 +131,8 @@ export function Hero() {
             {avatars.map((a, i) => (
               <div
                 key={i}
-                className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#0f172a] text-[11px] font-bold text-white"
-                style={{ backgroundColor: a.color }}
+                className="flex h-9 w-9 items-center justify-center rounded-full border-2 text-[11px] font-bold text-white"
+                style={{ backgroundColor: a.color, borderColor: "var(--avatar-border)" }}
               >
                 {a.initials}
               </div>
@@ -150,14 +150,14 @@ export function Hero() {
           animate="visible"
           className="mt-[60px] w-full max-w-[920px]"
         >
-          <div className="glass overflow-hidden rounded-2xl glow">
-            <div className="flex h-10 items-center border-b border-white/10 bg-white/5 px-4">
+          <div className="glass glow overflow-hidden rounded-2xl">
+            <div className="flex h-10 items-center border-b px-4" style={{ borderColor: "var(--border-color)", backgroundColor: "var(--surface-hover)" }}>
               <div className="flex items-center gap-[6px]">
                 <span className="h-[10px] w-[10px] rounded-full bg-red-500" />
                 <span className="h-[10px] w-[10px] rounded-full bg-amber-500" />
                 <span className="h-[10px] w-[10px] rounded-full bg-green-500" />
               </div>
-              <div className="mx-auto rounded bg-white/10 px-3 py-0.5 text-[12px] text-text-muted">
+              <div className="mx-auto rounded px-3 py-0.5 text-[12px]" style={{ color: "var(--text-muted)", backgroundColor: "var(--surface-hover-2)" }}>
                 app.dgtwrapper.com
               </div>
               <div className="w-16" />
@@ -167,7 +167,7 @@ export function Hero() {
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <div className="text-base font-semibold text-foreground">
-                    Good morning, Aditya 👋
+                    Good morning, Vishal 👋
                   </div>
                   <div className="text-[13px] text-text-muted">
                     Super Admin · DGT Wrapper — 12 organizations
@@ -186,21 +186,21 @@ export function Hero() {
                   { label: "Conversion", value: "24.8%", color: "#22c55e" },
                   { label: "Avg. Response", value: "1.2m", color: "#f59e0b" },
                 ].map((s, i) => (
-                  <div key={i} className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div key={i} className="rounded-xl border p-3" style={{ borderColor: "var(--border-color)", backgroundColor: "var(--surface-muted)" }}>
                     <div className="text-sm font-bold" style={{ color: s.color }}>{s.value}</div>
                     <div className="text-[11px] text-muted-foreground">{s.label}</div>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t border-white/10 pt-3">
+              <div className="border-t pt-3" style={{ borderColor: "var(--border-color)" }}>
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-medium text-text-secondary">Recent Lead Activity</span>
-                  <span className="text-[11px] text-blue-400">View all</span>
+                  <span className="text-[11px]" style={{ color: "var(--accent-text)" }}>View all</span>
                 </div>
                 <div className="space-y-2">
                   {chatLeads.map((chat, i) => (
-                    <div key={i} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <div key={i} className="flex items-center gap-3 rounded-xl border p-3" style={{ borderColor: "var(--border-color)", backgroundColor: "var(--card-bg-subtle)" }}>
                       <div
                         className="flex h-9 w-9 items-center justify-center rounded-full text-[12px] font-bold text-white flex-shrink-0"
                         style={{ backgroundColor: chat.color }}

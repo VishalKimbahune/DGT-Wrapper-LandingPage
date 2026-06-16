@@ -41,7 +41,7 @@ const item = {
 
 export function HowItWorks() {
   return (
-    <section id="solutions" className="bg-[#0b1323]">
+    <section id="how-it-works" className="bg-section-alt">
       <div className="section-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -50,7 +50,7 @@ export function HowItWorks() {
           transition={{ duration: 0.5, ease }}
           className="mb-4 text-center"
         >
-          <span className="text-[12px] font-medium tracking-[0.1em] uppercase text-blue-400">
+          <span className="text-[12px] font-medium tracking-[0.1em] uppercase" style={{ color: "var(--accent-text)" }}>
             How It Works
           </span>
         </motion.div>
@@ -77,7 +77,7 @@ export function HowItWorks() {
               y1="0"
               x2="100%"
               y2="0"
-              stroke="rgba(37,99,235,0.2)"
+              stroke="var(--animated-line)"
               strokeWidth="2"
               strokeDasharray="8 6"
             >
@@ -96,12 +96,12 @@ export function HowItWorks() {
               const Icon = step.icon;
               return (
                 <motion.div key={i} variants={item} className="glass-card relative flex-1 p-8 text-center">
-                  <div className="pointer-events-none absolute top-3 left-3 text-[72px] font-black leading-none text-white/[0.04] select-none">
+                  <div className="pointer-events-none absolute top-3 left-3 text-[72px] font-black leading-none select-none" style={{ color: "var(--step-number)" }}>
                     {step.num}
                   </div>
                   <div
                     className="relative mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold text-white"
-                    style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)" }}
+                    style={{ background: "var(--stepper-bg)" }}
                   >
                     {step.num}
                   </div>
